@@ -7,65 +7,82 @@
 
 import SwiftUI
 
-
-// Main view that shows a list of people fetched from API.
+//Main view that shows a list of people fetched from API
 struct ContentView: View {
     @StateObject var httpConnection = HttpConnection()
+    @State private var firstName = ""
+    @State private var lastName = ""
+    @State private var userAddedMessage = false
+    @State private var emptyFormMessage = false
 
     var body: some View {
-          VStack {
-              Text("Dummy JSON API 👤")
-                  .font(.title)
-              List {
+        NavigationView {
+            VStack {
+                Text("Dummy JSON API 👤")
+                    .font(.title)
 
-                 //Retrieves people fetched from the httpConnection object.
-                  let people = httpConnection.result
+                List {
 
-                  //Loops through people retrieved and creates a view for each person.
-                  ForEach(people, id: \.id) { person in
-                          Text("\(person.firstName) \(person.lastName)")
-                      .padding()
-                      .cornerRadius(20)
-                   }
+                    //Retrieves people fetched from the httpConnection object
+                    let people = httpConnection.result
+
+                    //Loops through people retrieved and creates a view for each person
+                    ForEach(people, id: \.id) { person in
+                            Text("\(person.firstName) \(person.lastName)")
+                                .font(.headline)
+                                .padding()
+                    }
+                }
+
+                Group{
+                    Form {
+                        TextField("First Name", text: $firstName)
+                        TextField("Last Name", text: $lastName)
+
+                        Button(action: {
+
+                            //Checks if fields are empty
+                            if firstName.isEmpty || lastName.isEmpty {
+                                emptyFormMessage = true
+
+                                //Delay to hide the alert emptyFormMessage
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    emptyFormMessage = false
+                        }
+                            } else {
+                                userAddedMessage = true
+                                firstName = ""
+                                lastName = ""
+
+                                //Delay to hide the alert userAddedMessage
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    userAddedMessage = false
+                                }
+                            }
+                        }) {
+                            Text("Add User")
+                            }
+
+                            if emptyFormMessage {
+                                Text("Please fill out form!")
+                                    .foregroundColor(.red)
+                            }
+
+                            if userAddedMessage {
+                                Text("User added!")
+                                    .foregroundColor(.green)
+                        }
+                    }
+                    .frame(height: 200)
                 }
             }
-          .onAppear {
-              httpConnection.connect()
-            }
+        }
+        .onAppear {
+            httpConnection.connect()
         }
     }
-
-
-//Handles the HTTP connection to the API and retrieves the data
-class HttpConnection: ObservableObject {
-
-//Result array of the people retrieved from the API
-@Published var result: Array<Person> = []
-
-var myURL: URL {
-    URL(string: "https://dummyjson.com/users")!
 }
 
-// Method connects to the API and retrieves the data
-func connect() {
-    let httpTask = URLSession.shared.dataTask(with: myURL) { (optionalData, response, error) in
-
-        // Decodes data retrieved from the API into an HttpResult object
-        let jsonDecoder = JSONDecoder()
-        DispatchQueue.main.async () {
-            do {
-                let httpResult = try jsonDecoder.decode(HttpResult.self, from: optionalData!)
-
-                 //Sets result array to the users retrieved from the HttpResult object
-                self.result = httpResult.users
-            }catch {
-                print(error)
-            }
-        }
-    }
-    httpTask.resume()
-}
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
