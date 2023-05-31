@@ -13,7 +13,6 @@
 		605A16262A0B61760061285F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605A16252A0B61760061285F /* Preview Assets.xcassets */; };
 		605A16322A0B762A0061285F /* HttpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A16312A0B762A0061285F /* HttpResult.swift */; };
 		605A16342A0B76560061285F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A16332A0B76560061285F /* Person.swift */; };
-		605A16362A0B85920061285F /* NewPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A16352A0B85920061285F /* NewPerson.swift */; };
 		6076C9692A1358E0002C1849 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6076C9682A1358E0002C1849 /* Connection.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +24,6 @@
 		605A16252A0B61760061285F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		605A16312A0B762A0061285F /* HttpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpResult.swift; sourceTree = "<group>"; };
 		605A16332A0B76560061285F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		605A16352A0B85920061285F /* NewPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPerson.swift; sourceTree = "<group>"; };
 		6076C9682A1358E0002C1849 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +80,6 @@
 			children = (
 				605A16312A0B762A0061285F /* HttpResult.swift */,
 				605A16332A0B76560061285F /* Person.swift */,
-				605A16352A0B85920061285F /* NewPerson.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,7 +166,6 @@
 				605A16212A0B61750061285F /* ContentView.swift in Sources */,
 				605A161F2A0B61750061285F /* My_ApplicationApp.swift in Sources */,
 				605A16322A0B762A0061285F /* HttpResult.swift in Sources */,
-				605A16362A0B85920061285F /* NewPerson.swift in Sources */,
 				6076C9692A1358E0002C1849 /* Connection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

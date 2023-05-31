@@ -7,27 +7,28 @@
 
 import Foundation
 
-//Handles the HTTP connection to the API and retrieves the data
+/// Handles the HTTP connection to the API and retrieves the data
 class HttpConnection: ObservableObject {
 
-    //Result array of the people retrieved from the API
+    /// Result array of the people retrieved from the API
     @Published var result: Array<Person> = []
 
+    /// URL for the api.
     var myURL: URL {
         URL(string: "https://dummyjson.com/users")!
     }
 
-    // Method connects to the API and retrieves the data
+    /// Method connects to the API and retrieves the data
     func connect() {
         let httpTask = URLSession.shared.dataTask(with: myURL) { (optionalData, response, error) in
 
-            // Decodes data retrieved from the API into an HttpResult object
+            /// Decodes data retrieved from the API into an HttpResult object
             let jsonDecoder = JSONDecoder()
             DispatchQueue.main.async () {
                 do {
                     let httpResult = try jsonDecoder.decode(HttpResult.self, from: optionalData!)
 
-                    //Sets result array to the users retrieved from the HttpResult object
+                    /// ets result array to the users retrieved from the HttpResult object
                     self.result = httpResult.users
 
                 } catch {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//Main view that shows a list of people fetched from API
+/// Main view that shows a list of people fetched from API
 struct ContentView: View {
     @StateObject var httpConnection = HttpConnection()
     @State private var firstName = ""
@@ -22,7 +22,6 @@ struct ContentView: View {
                     .font(.title)
 
                 List {
-
                     //Retrieves people fetched from the httpConnection object
                     let people = httpConnection.result
 
@@ -41,11 +40,11 @@ struct ContentView: View {
 
                         Button(action: {
 
-                            //Checks if fields are empty
+                            //Check if fields are empty
                             if firstName.isEmpty || lastName.isEmpty {
                                 emptyFormMessage = true
 
-                                //Delay to hide the alert emptyFormMessage
+                                //Delay to hide the alert emptyformmessage
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     emptyFormMessage = false
                         }
@@ -54,7 +53,7 @@ struct ContentView: View {
                                 firstName = ""
                                 lastName = ""
 
-                                //Delay to hide the alert userAddedMessage
+                                //Delay to hide the alert useraddedmessage
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     userAddedMessage = false
                                 }

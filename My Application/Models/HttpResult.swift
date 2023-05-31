@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+/// Represents the result of an http request, that contains an array of person objects
 struct HttpResult: Decodable {
     let users: Array<Person>
 }
